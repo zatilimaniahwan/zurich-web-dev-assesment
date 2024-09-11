@@ -1,7 +1,5 @@
 import UserList from "./users/list/user-list";
 
-const Home = () => {
-  return <UserList />;
-};
+const Home = UserList;
 
 export default Home;

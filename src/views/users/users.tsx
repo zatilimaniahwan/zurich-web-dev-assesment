@@ -2,9 +2,34 @@ import useFetchUsersData from "@/pages/api/hooks/use-fetch-users-data";
 import * as S from "./users.styles";
 import { useEffect, useState } from "react";
 
-const UserList = () => {
+const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [visibleEmails, setVisibleEmails] = useState<Record<number, boolean>>(
+    {}
+  );
+
+  /**
+   * Toggles the visibility of a user's email address based on their ID.
+   * @param userId - The ID of the user whose email address should be toggled.
+   */
+  const toggleVisibleEmail = (userId: number) => {
+    setVisibleEmails((previousVisibleEmails) => ({
+      ...previousVisibleEmails,
+      [userId]: !previousVisibleEmails[userId],
+    }));
+  };
+
+  /**
+   * Masks a user's email address by hiding all characters except the first, and the domain.
+   * @example maskEmailAddress("user@example.com") => "u*****@example.com"
+   * @param {string} emailAddress - The email address to mask.
+   * @returns {string} The masked email address.
+   */
+  const maskEmailAddress = (emailAddress: string): string => {
+    const [username, domain] = emailAddress.split("@");
+    return `${username[0]}*****@${domain}`;
+  };
 
   useEffect(() => {
     /**
@@ -52,12 +77,19 @@ const UserList = () => {
                   <img
                     src={user.avatar}
                     alt={`${user.first_name} avatar`}
-                    width="50"
+                    width="100"
                   />
                 </S.TableCell>
                 <S.TableCell>{user.first_name}</S.TableCell>
                 <S.TableCell>{user.last_name}</S.TableCell>
-                <S.TableCell>{user.email}</S.TableCell>
+                <S.TableCell>
+                  {visibleEmails[user.id]
+                    ? user.email
+                    : maskEmailAddress(user.email)}
+                  <button onClick={() => toggleVisibleEmail(user.id)}>
+                    {visibleEmails[user.id] ? "Hide" : "Show"}
+                  </button>
+                </S.TableCell>
               </tr>
             ))}
           </S.TableBody>
@@ -67,4 +99,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default Users;

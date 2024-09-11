@@ -4,5 +4,4 @@ export const Container = styled.div`
   display: flex;
   height: 100vh;
   padding: 16px;
-  background-color: white;
 `;

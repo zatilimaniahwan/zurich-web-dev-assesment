@@ -1,9 +1,9 @@
-import UserList from "./users/users";
+import Users from "./users/users";
 import * as S from "./home.styles";
 
 const Home = () => (
   <S.Container>
-    <UserList />
+    <Users />
   </S.Container>
 );
 export default Home;

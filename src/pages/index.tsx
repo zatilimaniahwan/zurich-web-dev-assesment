@@ -1,5 +1,4 @@
-import Home from "@/views/Home";
-
+import Home from "@/views/home";
 const Index = Home;
 
 export default Index;

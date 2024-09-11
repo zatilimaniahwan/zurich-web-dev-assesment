@@ -6,7 +6,7 @@ type User = {
   avatar: string;
 };
 
-type UserInfo = {
+type UserResponse = {
   data: User[];
   page: number;
   per_page: number;

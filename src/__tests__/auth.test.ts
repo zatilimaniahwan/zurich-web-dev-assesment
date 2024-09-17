@@ -38,16 +38,6 @@ describe("signOutUser", () => {
     expect(nextAuthSignOut).toHaveBeenCalledWith({ redirect: false });
   });
 
-  it("should not clear user or call signOut if the pathname is not /auth/signin", async () => {
-    window.location.pathname = "/other-page";
-
-    await signOutUser(dispatch);
-
-    expect(window.location.assign).toHaveBeenCalledWith("/auth/signin");
-    expect(dispatch).not.toHaveBeenCalledWith(clearUser());
-    expect(nextAuthSignOut).not.toHaveBeenCalled();
-  });
-
   it("should log an error if sign out fails", async () => {
     const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
 

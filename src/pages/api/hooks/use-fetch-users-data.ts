@@ -34,8 +34,11 @@ const useFetchUsersData = async (): Promise<User[]> => {
 
     // Fetch and process remaining pages in parallel
     const pagePromises = [];
-    for (let page = 2; page <= totalPages; page++) {
-      pagePromises.push(fetchUsersByPage(page));
+    for (let page = 1; page <= totalPages; page++) {
+      // skips first page
+      if (page !== initialResponse.page) {
+        pagePromises.push(fetchUsersByPage(page));
+      }
     }
 
     const responses = await Promise.all(pagePromises);

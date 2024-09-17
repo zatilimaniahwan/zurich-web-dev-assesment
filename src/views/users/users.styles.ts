@@ -1,43 +1,60 @@
-import css, { styled } from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components";
 
-export const TableWrapper = styled.div`
-  width: 100%;
-  padding: 16px;
+export const CardContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
 `;
 
-export const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+export const Card = styled.div`
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: calc(33.333% - 20px); // Adjust width based on screen size
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center horizontally
+  justify-content: center; // Center vertically
+  text-align: center; // Center text
+  @media (max-width: 1200px) {
+    width: calc(50% - 20px);
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-export const TableHead = styled.thead``;
-
-export const TableHeaderCell = styled.th`
-  padding: 10px;
-  text-align: left;
-  font-weight: bold;
-  border-bottom: 1px solid #ddd;
-  color: #333333;
+export const Avatar = styled.img`
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
 `;
 
-export const TableBody = styled.tbody`
-  padding: 10px;
-`;
-
-export const TableRow = styled.tr``;
-
-export const TableCell = styled.td`
-  border-bottom: 1px solid #ddd;
-  color: #333333;
-  padding: 10px;
-`;
-
-export const LoadingMessage = styled.div`
+export const UserName = styled.h3`
+  margin: 0;
   font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 20px;
+`;
+
+export const UserEmail = styled.p`
+  margin: 0;
+  color: #666;
+`;
+
+export const Wrapper = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 21px;
+  margin-top: 4rem;
+  box-sizing: border-box;
+`;
+
+export const Icon = styled(FontAwesomeIcon)`
+  margin-left: 8px;
+  padding-top: 8px;
 `;

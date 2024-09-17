@@ -13,6 +13,31 @@ const Index = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [visibleEmails, setVisibleEmails] = useState<Record<number, boolean>>(
+    {}
+  );
+
+  /**
+   * Toggles the visibility of a user's email address based on their ID.
+   * @param userId - The ID of the user whose email address should be toggled.
+   */
+  const toggleVisibleEmail = (userId: number) => {
+    setVisibleEmails((previousVisibleEmails) => ({
+      ...previousVisibleEmails,
+      [userId]: !previousVisibleEmails[userId],
+    }));
+  };
+
+  /**
+   * Masks a user's email address by hiding all characters except the first, and the domain.
+   * @example maskEmailAddress("user@example.com") => "u*****@example.com"
+   * @param {string} emailAddress - The email address to mask.
+   * @returns {string} The masked email address.
+   */
+  const maskEmailAddress = (emailAddress: string): string => {
+    const [username, domain] = emailAddress.split("@");
+    return `${username[0]}*****@${domain}`;
+  };
 
   /**
    * Fetches all the users from the API.
@@ -49,7 +74,13 @@ const Index = () => {
     return (
       <>
         <Header />
-        <Users users={users} loading={loading} />
+        <Users
+          users={users}
+          loading={loading}
+          toggleVisibleEmail={toggleVisibleEmail}
+          maskEmailAddress={maskEmailAddress}
+          visibleEmails={visibleEmails}
+        />
         <Footer />
       </>
     );

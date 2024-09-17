@@ -1,39 +1,27 @@
-import useFetchUsersData from "@/pages/api/hooks/use-fetch-users-data";
 import * as S from "./users.styles";
-import { useEffect, useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 type UserProps = {
   users: User[];
   loading: boolean;
+  toggleVisibleEmail: (userId: number) => void;
+  maskEmailAddress: (emailAddress: string) => string;
+  visibleEmails: Record<number, boolean>;
 };
-const Users = ({ users, loading }: UserProps) => {
-  const [visibleEmails, setVisibleEmails] = useState<Record<number, boolean>>(
-    {}
-  );
 
-  /**
-   * Toggles the visibility of a user's email address based on their ID.
-   * @param userId - The ID of the user whose email address should be toggled.
-   */
-  const toggleVisibleEmail = (userId: number) => {
-    setVisibleEmails((previousVisibleEmails) => ({
-      ...previousVisibleEmails,
-      [userId]: !previousVisibleEmails[userId],
-    }));
-  };
-
-  /**
-   * Masks a user's email address by hiding all characters except the first, and the domain.
-   * @example maskEmailAddress("user@example.com") => "u*****@example.com"
-   * @param {string} emailAddress - The email address to mask.
-   * @returns {string} The masked email address.
-   */
-  const maskEmailAddress = (emailAddress: string): string => {
-    const [username, domain] = emailAddress.split("@");
-    return `${username[0]}*****@${domain}`;
-  };
-
+/**
+ * The Users view displays a list of users with their name and email address.
+ * The email address is initially hidden and can be toggled to be shown or hidden.
+ * @param {UserProps} props - The component props.
+ * @returns {JSX.Element} The JSX element representing the Users component.
+ */
+const Users = ({
+  users,
+  loading,
+  toggleVisibleEmail,
+  maskEmailAddress,
+  visibleEmails,
+}: UserProps) => {
   if (loading && !users) {
     return <p>Loading...</p>;
   }

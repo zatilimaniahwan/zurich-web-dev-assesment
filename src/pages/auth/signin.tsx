@@ -1,7 +1,7 @@
-import SignInWithGoogle from "@/views/components/buttons/sign-in-button/sign-in-with-google";
+import SignInWithGoogle from "@/views/sign-in/sign-in";
 import { useSession } from "next-auth/react";
 
-const Login = () => {
+const SignIn = () => {
   const { status } = useSession();
   // Return null while loading to prevent premature rendering
   if (status === "loading") {
@@ -10,4 +10,4 @@ const Login = () => {
   return <SignInWithGoogle />;
 };
 
-export default Login;
+export default SignIn;

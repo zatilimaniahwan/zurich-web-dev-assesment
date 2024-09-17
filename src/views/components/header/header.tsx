@@ -1,7 +1,8 @@
 import * as S from "./header.styles";
-import SignOutButton from "../buttons/sign-out-button/sign-out-button";
+import SignOut from "../../sign-out/sign-out";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { SignOutButton } from "@/views/sign-out/sign-out.styles";
 
 const Header = () => {
   const user = useSelector((state: RootState) => state.userData.user?.name);
@@ -18,7 +19,7 @@ const Header = () => {
             <S.SignedInUserLabel>Hello, {user}</S.SignedInUserLabel>
           </S.NavItem>
           <S.NavItem>
-            <SignOutButton />
+            <SignOut />
           </S.NavItem>
         </S.NavList>
       </nav>

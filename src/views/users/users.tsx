@@ -30,7 +30,7 @@ const Users = ({
     return (
       <S.Wrapper>
         <S.CardContainer>
-          {users.map((user) => (
+          {users?.map((user) => (
             <S.Card key={user.id}>
               <S.Avatar
                 src={user.avatar}

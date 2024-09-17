@@ -10,14 +10,8 @@ import {
  * method.
  *
  * @param {AppDispatch} dispatch - The Redux dispatch function.
- */
-
-/**
- * Signs out the user by clearing the Redux state and calling NextAuth's sign out
- * method, then redirects to the home page.
  *
- * @param {AppDispatch} dispatch - The Redux dispatch function.
- * @param {string} redirectUrl - The URL to redirect to after sign-out.
+ * @returns {Promise<void>} A promise that resolves when the sign out is complete.
  */
 export const signOutUser = async (dispatch: AppDispatch) => {
   try {
@@ -29,6 +23,9 @@ export const signOutUser = async (dispatch: AppDispatch) => {
   }
 };
 
+/**
+ * Signs in the user with Google and redirects to the home page upon success.
+ */
 export const signInUser = () => {
   // Sign in with Google and handle redirection
   nextAuthSignIn("google", { callbackUrl: "/" });

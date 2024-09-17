@@ -2,7 +2,6 @@ import * as S from "./header.styles";
 import SignOut from "../../sign-out/sign-out";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { SignOutButton } from "@/views/sign-out/sign-out.styles";
 
 const Header = () => {
   const user = useSelector((state: RootState) => state.userData.user?.name);

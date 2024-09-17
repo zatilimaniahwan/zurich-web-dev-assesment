@@ -13,11 +13,8 @@ import {
  */
 export const signOutUser = async (dispatch: AppDispatch) => {
   try {
-    window.location.assign("/auth/signin");
-    if (window.location.pathname === "/auth/signin") {
-      dispatch(clearUser());
-      await nextAuthSignOut({ redirect: false });
-    }
+    await nextAuthSignOut({ redirect: true, callbackUrl: "/auth/signin" });
+    dispatch(clearUser());
   } catch (error) {
     console.error("Sign out failed", error);
   }

@@ -13,13 +13,14 @@ export const Card = styled.div`
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
-  width: calc(33.333% - 20px); // Adjust width based on screen size
+  width: calc(33.333% - 20px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center; // Center horizontally
-  justify-content: center; // Center vertically
-  text-align: center; // Center text
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
   @media (max-width: 1200px) {
     width: calc(50% - 20px);
   }

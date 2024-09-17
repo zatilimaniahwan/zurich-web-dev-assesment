@@ -16,7 +16,7 @@ const fetchUsersByPage = async (page: number): Promise<UserResponse> => {
  * Fetches all the users from the API.
  * @returns A promise that resolves with an array of all users.
  */
-const useFetchUsersData = async (): Promise<User[]> => {
+const UseFetchUsersData = async (): Promise<User[]> => {
   const allUsersData: User[] = [];
 
   try {
@@ -59,4 +59,4 @@ const useFetchUsersData = async (): Promise<User[]> => {
   return allUsersData;
 };
 
-export default useFetchUsersData;
+export default UseFetchUsersData;

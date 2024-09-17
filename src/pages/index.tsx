@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Footer from "@/views/components/footer/footer";
-import useFetchUsersData from "./api/hooks/use-fetch-users-data";
+import UseFetchUsersData from "./api/hooks/use-fetch-users-data";
 
 const Index = () => {
   const { status, data: session } = useSession();
@@ -56,7 +56,7 @@ const Index = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const users = await useFetchUsersData();
+      const users = await UseFetchUsersData();
       setUsers(users);
       setLoading(false);
     } catch (error) {
@@ -69,7 +69,7 @@ const Index = () => {
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
       // Set the user in Redux store
-      dispatch(setUser(session.user));
+      dispatch(setUser(session.user as GoogleUserProfile));
       if (users.length === 0) fetchUsers();
       // Redirect to users page if authenticated
     } else if (status === "unauthenticated") {

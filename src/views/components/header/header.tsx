@@ -2,15 +2,16 @@ import * as S from "./header.styles";
 import SignOut from "../../sign-out/sign-out";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import Link from "next/link";
 
 const Header = () => {
   const user = useSelector((state: RootState) => state.userData.user?.name);
   return (
     <S.HeaderContainer>
       <div>
-        <a href="/">
+        <Link href="/">
           <S.Logo src="/zurich-logo-blue.svg" alt="Zurich Logo" />
-        </a>
+        </Link>
       </div>
       <nav>
         <S.NavList>

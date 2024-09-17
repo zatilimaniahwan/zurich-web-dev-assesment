@@ -51,7 +51,7 @@ export default NextAuth({
      * @param {{ session: Session, token: Session, user: User }} param0
      * @returns {Session} The updated session object.
      */
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user = token;
       return session;
     },

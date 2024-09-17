@@ -1,40 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Zurich Web Development Assessment
 
-## Getting Started
+### Pages
 
-First, run the development server:
+This project contains the following folders:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. api: Contains the hooks and auth subfolders:
+
+- hooks: Includes a custom API hook for fetching user data from a specified endpoint.
+- auth: Contains NextAuth configuration and a sample file listing unauthorized emails. This sample list is used to handle cases where users should be denied access, addressing a limitation of the Google OAuth API which lacks an endpoint for retrieving test users from Google Cloud Platform (GCP).
+
+2. auth: Houses the Unauthorized and Sign-In pages, which render components from the views folder.
+
+The main content is rendered in `index.tsx`.
+
+### Store
+
+All the redux data stored in `user-slice.ts`.
+
+### Type
+
+The types folder was created to store global data types.
+
+### Styles
+
+The styles folder contains the global CSS used throughout the project.
+
+### Utils
+
+The utils folder contains authentication functionality used by the sign-in and sign-out components.
+
+### Views
+
+This folder contains components used in the modules within the pages folder. The components folder includes shared and child components utilized by parent components and does not contain any business logic.
+
+### Middleware
+
+This project uses middleware to manage access based on authentication. The middleware checks the token's validity to authenticate the user and redirects them to the appropriate page.
+
+### Tests
+
+This folder contains unit tests for authentication and email masking functionalities, as well as tests for components like the button and email visibility.
+
+## Steps to setup the Google Oauth in local
+
+1. Create a `.env.local` file with the following information. Please fill in the details based on the document attached to the email.
+
+```
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For the `NEXTAUTH_SECRET` can use the secret provided in the document. If you want to generate by your ownself, can run this command in the terminal
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+openssl rand -base64 32
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+2. For testing the Google Oauth,
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Authorized email - can use any personal gmail email.
+- Unauthorized email - can use provided email in the document attached in the email
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Commands in the project
 
-## Learn More
+1. Install the dependecies
 
-To learn more about Next.js, take a look at the following resources:
+```
+npm i
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Run the dev environment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm run dev
+```
 
-## Deploy on Vercel
+3. Run the test
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+npm run test
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Run the test in watch environment
+
+```
+npm run test:watch
+```
+
+5. Run the linting functionality
+
+```
+npm run lint
+```

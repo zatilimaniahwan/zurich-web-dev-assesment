@@ -1,26 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface UserState {
-  user: any; // Replace `any` with your user type if defined
-  isAuthenticated: boolean;
-}
+type UserState = {
+  user: GoogleUserProfile;
+};
 
 const initialState: UserState = {
-  user: null,
-  isAuthenticated: false,
+  user: {
+    name: "",
+    email: "",
+    picture: "",
+    sub: "",
+    id: "",
+    image: "",
+    iat: 0,
+    exp: 0,
+    jti: "",
+    isAuthenticated: false,
+  },
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<any>) {
+    setUser(state, action: PayloadAction<GoogleUserProfile>) {
       state.user = action.payload;
-      state.isAuthenticated = true;
     },
     clearUser(state) {
-      state.user = null;
-      state.isAuthenticated = false;
+      state.user = initialState.user;
     },
   },
 });

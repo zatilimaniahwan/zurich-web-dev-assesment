@@ -1,6 +1,21 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+// pages/_app.tsx
+import { SessionProvider } from "next-auth/react";
+import { Provider } from "react-redux";
+import { AppProps } from "next/app";
+import { store } from "../store";
+import "../styles/globals.css";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+const MyApp = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) => {
+  return (
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </SessionProvider>
+  );
+};
+
+export default MyApp;

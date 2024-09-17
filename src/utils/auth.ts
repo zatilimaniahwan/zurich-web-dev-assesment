@@ -6,18 +6,18 @@ import {
 } from "next-auth/react";
 
 /**
- * Signs out the user by clearing the Redux state and calling NextAuth's sign out
- * method.
- *
- * @param {AppDispatch} dispatch - The Redux dispatch function.
- *
- * @returns {Promise<void>} A promise that resolves when the sign out is complete.
+ * Signs out the user by clearing the user state in the store and calling NextAuth's
+ * `signOut` method. If the sign out is successful, redirects to the sign in page.
+ * If the sign out fails, logs the error to the console.
+ * @param {AppDispatch} dispatch - The dispatch function from the store.
  */
 export const signOutUser = async (dispatch: AppDispatch) => {
   try {
-    dispatch(clearUser());
-
-    await nextAuthSignOut({ redirect: false });
+    window.location.assign("/auth/signin");
+    if (window.location.pathname === "/auth/signin") {
+      dispatch(clearUser());
+      await nextAuthSignOut({ redirect: false });
+    }
   } catch (error) {
     console.error("Sign out failed", error);
   }

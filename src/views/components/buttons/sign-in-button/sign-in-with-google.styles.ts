@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -11,12 +12,12 @@ export const Container = styled.div`
 export const GoogleButton = styled.button`
   display: flex;
   align-items: center;
-  background-color: #4285f4; /* Google blue */
+  background-color: #4285f4;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -35,4 +36,8 @@ export const GoogleButton = styled.button`
     width: 20px;
     height: 20px;
   }
+`;
+
+export const Icon = styled(FontAwesomeIcon)`
+  margin-right: 8px;
 `;

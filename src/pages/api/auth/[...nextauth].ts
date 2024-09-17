@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { sampleUnauthorizedEmail } from "./sample-unauthorized-email";
 
 export default NextAuth({
   providers: [
@@ -10,33 +11,23 @@ export default NextAuth({
   ],
   pages: {
     signIn: "/",
-    error: "/auth/login",
+    error: "/auth/signin",
     signOut: "/auth/signin",
   },
   callbacks: {
     /**
-     * Checks if the user's email domain is authorized to sign in.
-     *
-     * The function takes the user object as an argument and returns a boolean
-     * indicating whether the sign-in should be allowed or not.
-     *
-     * @param {{ email: string | undefined }} user - The user object
-     * @returns {boolean} true if the sign-in should be allowed, false otherwise
+     * Checks if the user's email is in the list of allowed test users.
+     * If it is, allows sign-in. Otherwise, denies sign-in.
+     * @param user - The user object containing the user's email.
+     * @returns A boolean indicating whether sign-in is allowed or not.
      */
     async signIn({ user }) {
-      // List of authorized email domains
-      const authorizedDomains = ["gmail.com"];
-
-      // Extract the domain from the user's email
-      const emailDomain = user.email?.split("@")[1];
-
-      // Allow sign-in only if the email's domain is in the authorized list
-      if (emailDomain && authorizedDomains.includes(emailDomain)) {
+      // Check if the user's email is in the list of allowed test users
+      if (user.email && !sampleUnauthorizedEmail.includes(user.email)) {
         return true; // Allow sign-in
+      } else {
+        return false; // Deny sign-in
       }
-
-      // If the domain is not authorized, reject the sign-in
-      return false;
     },
     /**
      * Updates the token object with the user data from the session or user.

@@ -24,9 +24,6 @@ export const signOutUser = async (dispatch: AppDispatch) => {
     dispatch(clearUser());
 
     await nextAuthSignOut({ redirect: false });
-
-    // Redirect to the specified URL after sign-out
-    window.location.href = "/auth/signin";
   } catch (error) {
     console.error("Sign out failed", error);
   }

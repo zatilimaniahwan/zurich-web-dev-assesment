@@ -22,12 +22,6 @@ export const GoogleButton = styled(Button)`
   &:focus {
     outline: none;
   }
-
-  img {
-    margin-right: 10px;
-    width: 20px;
-    height: 20px;
-  }
 `;
 
 export const Icon = styled(FontAwesomeIcon)`

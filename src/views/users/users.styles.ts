@@ -57,4 +57,5 @@ export const Wrapper = styled.div`
 export const Icon = styled(FontAwesomeIcon)`
   margin-left: 8px;
   padding-top: 8px;
+  cursor: pointer;
 `;

@@ -15,7 +15,7 @@ const Header = () => {
       <nav>
         <S.NavList>
           <S.NavItem>
-            <S.SignedInUserLabel>Hello, {user}</S.SignedInUserLabel>
+            <S.SignedInUserLabel>Welcome, {user}</S.SignedInUserLabel>
           </S.NavItem>
           <S.NavItem>
             <SignOut />

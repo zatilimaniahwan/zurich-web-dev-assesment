@@ -11,7 +11,7 @@ export default NextAuth({
   ],
   pages: {
     signIn: "/",
-    error: "/auth/signin",
+    error: "/auth/unauthorized",
     signOut: "/auth/signin",
   },
   callbacks: {

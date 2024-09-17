@@ -1,4 +1,4 @@
-import SignInWithGoogle from "@/views/sign-in/sign-in";
+import SignInUser from "@/views/sign-in/sign-in";
 import { useSession } from "next-auth/react";
 
 const SignIn = () => {
@@ -7,7 +7,7 @@ const SignIn = () => {
   if (status === "loading") {
     return null;
   }
-  return <SignInWithGoogle />;
+  return <SignInUser />;
 };
 
 export default SignIn;

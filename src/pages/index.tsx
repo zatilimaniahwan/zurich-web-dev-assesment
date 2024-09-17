@@ -29,14 +29,22 @@ const Index = () => {
   };
 
   /**
-   * Masks a user's email address by hiding all characters except the first, and the domain.
-   * @example maskEmailAddress("user@example.com") => "u*****@example.com"
-   * @param {string} emailAddress - The email address to mask.
-   * @returns {string} The masked email address.
+   * Masks a user's email address by hiding all characters except the first one.
+   * @param emailAddress - The email address to mask.
+   * @returns The masked email address.
    */
   const maskEmailAddress = (emailAddress: string): string => {
+    if (!emailAddress || !emailAddress.includes("@")) {
+      return "";
+    }
+
     const [username, domain] = emailAddress.split("@");
-    return `${username[0]}*****@${domain}`;
+
+    if (username && domain) {
+      return `${username[0]}*****@${domain}`;
+    }
+
+    return "";
   };
 
   /**

@@ -43,7 +43,7 @@ This folder contains unit tests for authentication and email masking functionali
 
 ## Steps to setup the Google Oauth in local
 
-1. Create a `.env.local` file with the following information. Please fill in the details based on the document attached to the email.
+1. Create a `.env.local` file with the following information at the root level. Please fill in the details based on the document attached to the email.
 
 ```
 GOOGLE_CLIENT_ID=

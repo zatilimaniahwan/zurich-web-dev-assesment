@@ -30,33 +30,35 @@ const Users = ({
     return (
       <S.Wrapper>
         <S.CardContainer>
-          {users?.map((user) => (
-            <S.Card key={user.id}>
-              <S.Avatar
-                src={user.avatar}
-                alt={`${user.first_name} ${user.last_name}`}
-              />
-              <S.UserName>
-                {user.first_name} {user.last_name}
-              </S.UserName>
-              <S.UserEmail>
-                {visibleEmails[user.id]
-                  ? user.email
-                  : maskEmailAddress(user.email)}
-                {visibleEmails[user.id] ? (
-                  <S.Icon
-                    icon={faEyeSlash}
-                    onClick={() => toggleVisibleEmail(user.id)}
-                  />
-                ) : (
-                  <S.Icon
-                    icon={faEye}
-                    onClick={() => toggleVisibleEmail(user.id)}
-                  />
-                )}
-              </S.UserEmail>
-            </S.Card>
-          ))}
+          {users?.map((user) => {
+            return (
+              <S.Card key={user.id}>
+                <S.Avatar
+                  src={user.avatar}
+                  alt={`${user.first_name} ${user.last_name}`}
+                />
+                <S.UserName>
+                  {user.first_name} {user.last_name}
+                </S.UserName>
+                <S.UserEmail>
+                  {visibleEmails[user.id]
+                    ? user.email
+                    : maskEmailAddress(user.email)}
+                  {visibleEmails[user.id] ? (
+                    <S.Icon
+                      icon={faEyeSlash}
+                      onClick={() => toggleVisibleEmail(user.id)}
+                    />
+                  ) : (
+                    <S.Icon
+                      icon={faEye}
+                      onClick={() => toggleVisibleEmail(user.id)}
+                    />
+                  )}
+                </S.UserEmail>
+              </S.Card>
+            );
+          })}
         </S.CardContainer>
       </S.Wrapper>
     );

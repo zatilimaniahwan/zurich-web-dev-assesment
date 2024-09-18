@@ -1,20 +1,6 @@
-describe("maskEmailAddress", () => {
-  /**
-   * Masks a user's email address by hiding all characters except the first one.
-   * @param {string} emailAddress - The email address to mask.
-   * @returns {string} The masked email address.
-   */
-  const maskEmailAddress = (emailAddress: string): string => {
-    if (!emailAddress || !emailAddress.includes("@")) {
-      return "";
-    }
-    const [username, domain] = emailAddress.split("@");
-    if (username && domain) {
-      return `${username[0]}*****@${domain}`;
-    }
-    return "";
-  };
+import maskEmailAddress from "@/utils/mask-email-address";
 
+describe("maskEmailAddress", () => {
   it("should mask the email address correctly", () => {
     expect(maskEmailAddress("user@example.com")).toBe("u*****@example.com");
     expect(maskEmailAddress("john.doe@domain.com")).toBe("j*****@domain.com");

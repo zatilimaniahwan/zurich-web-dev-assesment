@@ -2,14 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import React, { useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const maskEmailAddress = (emailAddress: string): string => {
-  if (emailAddress) {
-    const [username, domain] = emailAddress.split("@");
-    if (username != null) return `${username[0]}*****@${domain}`;
-  }
-  return "";
-};
+import maskEmailAddress from "@/utils/mask-email-address";
 
 const EmailVisibilityComponent: React.FC<{
   user: { id: number; email: string };

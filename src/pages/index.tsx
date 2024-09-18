@@ -1,12 +1,12 @@
 import { clearUser, setUser } from "@/store/slices/user-slice";
 import { AppDispatch } from "@/store";
-import Header from "@/views/components/header/header";
 import Users from "@/views/users/users";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Footer from "@/views/components/footer/footer";
+import Footer from "@/views/footer/footer";
 import UseFetchUsersData from "./api/hooks/use-fetch-users-data";
+import Header from "@/views/header/header";
 
 const Index = () => {
   const { status, data: session } = useSession();

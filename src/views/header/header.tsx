@@ -1,13 +1,14 @@
-import * as S from "./header.styles";
-import SignOut from "../../sign-out/sign-out";
-import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { useSelector } from "react-redux";
+import HeaderComponent from "../components/header-component/header-component";
 import Link from "next/link";
+import * as S from "./header.styles";
+import SignOut from "../sign-out/sign-out";
 
 const Header = () => {
   const user = useSelector((state: RootState) => state.userData.user?.name);
   return (
-    <S.HeaderContainer>
+    <HeaderComponent>
       <div>
         <Link href="/">
           <S.Logo src="/zurich-logo-blue.svg" alt="Zurich Logo" />
@@ -23,7 +24,7 @@ const Header = () => {
           </S.NavItem>
         </S.NavList>
       </nav>
-    </S.HeaderContainer>
+    </HeaderComponent>
   );
 };
 

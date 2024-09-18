@@ -33,9 +33,11 @@ describe("signOutUser", () => {
 
     await signOutUser(dispatch);
 
-    expect(window.location.assign).toHaveBeenCalledWith("/auth/signin");
     expect(dispatch).toHaveBeenCalledWith(clearUser());
-    expect(nextAuthSignOut).toHaveBeenCalledWith({ redirect: false });
+    expect(nextAuthSignOut).toHaveBeenCalledWith({
+      redirect: true,
+      callbackUrl: "/auth/signin",
+    });
   });
 
   it("should log an error if sign out fails", async () => {

@@ -15,7 +15,6 @@ const initialState: UserState = {
     iat: 0,
     exp: 0,
     jti: "",
-    isAuthenticated: false,
   },
 };
 

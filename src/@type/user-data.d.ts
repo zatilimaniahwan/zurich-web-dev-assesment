@@ -24,5 +24,4 @@ type GoogleUserProfile = {
   iat: number | null | undefined;
   exp: number | null | undefined;
   jti: string | null | undefined;
-  isAuthenticated: boolean;
 };

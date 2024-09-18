@@ -1,12 +1,17 @@
+import { Dispatch, SetStateAction } from "react";
 import * as S from "./users.styles";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 type UserProps = {
   users: User[];
   loading: boolean;
-  toggleVisibleEmail: (userId: number) => void;
+  toggleVisibleEmail: (
+    userId: number,
+    setVisibleEmails: Dispatch<SetStateAction<Record<number, boolean>>>
+  ) => void;
   maskEmailAddress: (emailAddress: string) => string;
   visibleEmails: Record<number, boolean>;
+  setVisibleEmails: Dispatch<SetStateAction<Record<number, boolean>>>;
 };
 
 /**
@@ -21,6 +26,7 @@ const Users = ({
   toggleVisibleEmail,
   maskEmailAddress,
   visibleEmails,
+  setVisibleEmails,
 }: UserProps) => {
   if (loading && !users) {
     return <p>Loading...</p>;
@@ -47,12 +53,16 @@ const Users = ({
                   {visibleEmails[user.id] ? (
                     <S.Icon
                       icon={faEyeSlash}
-                      onClick={() => toggleVisibleEmail(user.id)}
+                      onClick={() =>
+                        toggleVisibleEmail(user.id, setVisibleEmails)
+                      }
                     />
                   ) : (
                     <S.Icon
                       icon={faEye}
-                      onClick={() => toggleVisibleEmail(user.id)}
+                      onClick={() =>
+                        toggleVisibleEmail(user.id, setVisibleEmails)
+                      }
                     />
                   )}
                 </S.UserEmail>

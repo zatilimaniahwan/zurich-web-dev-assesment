@@ -1,4 +1,4 @@
-import maskEmailAddress from "@/utils/mask-email-address";
+import { maskEmailAddress } from "@/utils/email-utils";
 
 describe("maskEmailAddress", () => {
   it("should mask the email address correctly", () => {

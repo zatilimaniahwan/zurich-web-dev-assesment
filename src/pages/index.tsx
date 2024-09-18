@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import Footer from "@/views/footer/footer";
 import UseFetchUsersData from "./api/hooks/use-fetch-users-data";
 import Header from "@/views/header/header";
-import maskEmailAddress from "@/utils/mask-email-address";
+import { maskEmailAddress, toggleVisibleEmail } from "@/utils/email-utils";
 
 const Index = () => {
   const { status, data: session } = useSession();
@@ -22,12 +22,12 @@ const Index = () => {
    * Toggles the visibility of a user's email address based on their ID.
    * @param userId - The ID of the user whose email address should be toggled.
    */
-  const toggleVisibleEmail = (userId: number) => {
+  /* const toggleVisibleEmail = (userId: number) => {
     setVisibleEmails((previousVisibleEmails) => ({
       ...previousVisibleEmails,
       [userId]: !previousVisibleEmails[userId],
     }));
-  };
+  }; */
 
   /**
    * Fetches all the users from the API.
@@ -67,9 +67,12 @@ const Index = () => {
         <Users
           users={users}
           loading={loading}
-          toggleVisibleEmail={toggleVisibleEmail}
+          toggleVisibleEmail={(userId: number) =>
+            toggleVisibleEmail(userId, setVisibleEmails)
+          }
           maskEmailAddress={maskEmailAddress}
           visibleEmails={visibleEmails}
+          setVisibleEmails={setVisibleEmails}
         />
         <Footer />
       </>

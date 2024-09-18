@@ -43,6 +43,7 @@ export const UserName = styled.h3`
 export const UserEmail = styled.p`
   margin: 0;
   color: #666;
+  width: 100%;
 `;
 
 export const Wrapper = styled.div`

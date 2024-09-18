@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import React, { useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import maskEmailAddress from "@/utils/mask-email-address";
+import { maskEmailAddress, toggleVisibleEmail } from "@/utils/email-utils";
 
 const EmailVisibilityComponent: React.FC<{
   user: { id: number; email: string };
@@ -11,13 +11,6 @@ const EmailVisibilityComponent: React.FC<{
     {}
   );
 
-  const toggleVisibleEmail = (userId: number) => {
-    setVisibleEmails((previousVisibleEmails) => ({
-      ...previousVisibleEmails,
-      [userId]: !previousVisibleEmails[userId],
-    }));
-  };
-
   return (
     <div>
       <span>
@@ -25,7 +18,7 @@ const EmailVisibilityComponent: React.FC<{
       </span>
       <FontAwesomeIcon
         icon={visibleEmails[user.id] ? faEyeSlash : faEye}
-        onClick={() => toggleVisibleEmail(user.id)}
+        onClick={() => toggleVisibleEmail(user.id, setVisibleEmails)}
         data-testid="icon"
       />
     </div>

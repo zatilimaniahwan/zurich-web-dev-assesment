@@ -19,17 +19,6 @@ const Index = () => {
   );
 
   /**
-   * Toggles the visibility of a user's email address based on their ID.
-   * @param userId - The ID of the user whose email address should be toggled.
-   */
-  /* const toggleVisibleEmail = (userId: number) => {
-    setVisibleEmails((previousVisibleEmails) => ({
-      ...previousVisibleEmails,
-      [userId]: !previousVisibleEmails[userId],
-    }));
-  }; */
-
-  /**
    * Fetches all the users from the API.
    * Sets the users state and the loading state.
    * If there is an error, logs the error to the console.

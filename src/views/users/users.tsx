@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import * as S from "./users.styles";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type UserProps = {
   users: User[];
@@ -34,45 +34,44 @@ const Users = ({
 
   if (!loading && users) {
     return (
-      <S.Wrapper>
-        <S.CardContainer>
+      <div className="w-full flex flex-col justify-center px-4 mt-16 box-border">
+        <div className="flex flex-wrap gap-5 my-5">
           {users?.map((user) => {
             return (
-              <S.Card key={user.id}>
-                <S.Avatar
+              <div
+                key={user.id}
+                className="bg-white border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center text-center
+                w-full sm:w-[calc(50%-20px)] md:w-[calc(33.333%-20px)]"
+              >
+                <img
                   src={user.avatar}
                   alt={`${user.first_name} ${user.last_name}`}
+                  className="rounded-full w-20 h-20"
                 />
-                <S.UserName>
+                <h3 className="mt-2 text-lg">
                   {user.first_name} {user.last_name}
-                </S.UserName>
-                <S.UserEmail>
+                </h3>
+                <p className="mt-1 text-gray-600 w-full flex items-center justify-center">
                   {visibleEmails[user.id]
                     ? user.email
                     : maskEmailAddress(user.email)}
-                  {visibleEmails[user.id] ? (
-                    <S.Icon
-                      icon={faEyeSlash}
-                      onClick={() =>
-                        toggleVisibleEmail(user.id, setVisibleEmails)
-                      }
-                    />
-                  ) : (
-                    <S.Icon
-                      icon={faEye}
-                      onClick={() =>
-                        toggleVisibleEmail(user.id, setVisibleEmails)
-                      }
-                    />
-                  )}
-                </S.UserEmail>
-              </S.Card>
+                  <FontAwesomeIcon
+                    icon={visibleEmails[user.id] ? faEyeSlash : faEye}
+                    className="ml-2 mt-2 cursor-pointer"
+                    onClick={() =>
+                      toggleVisibleEmail(user.id, setVisibleEmails)
+                    }
+                  />
+                </p>
+              </div>
             );
           })}
-        </S.CardContainer>
-      </S.Wrapper>
+        </div>
+      </div>
     );
   }
+
+  return null;
 };
 
 export default Users;

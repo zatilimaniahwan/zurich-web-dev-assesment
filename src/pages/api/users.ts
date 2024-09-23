@@ -1,5 +1,5 @@
 import axios from "axios";
-import { maskEmailAddress } from "@/utils/email-utils";
+import { maskEmailAddress } from "@/utils/mask-email-address";
 
 /**
  * Fetches a page of users from the external API.

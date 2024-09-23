@@ -6,7 +6,6 @@ This project contains the following folders:
 
 1. api: Contains the hooks and auth subfolders:
 
-- hooks: Includes a custom API hook for fetching user data from a specified endpoint.
 - auth: Contains NextAuth configuration and a sample file listing unauthorized emails. This sample list is used to handle cases where users should be denied access, addressing a limitation of the Google OAuth API which lacks an endpoint for retrieving test users from Google Cloud Platform (GCP).
 
 2. auth: Houses the Unauthorized and Sign-In pages, which render components from the views folder.

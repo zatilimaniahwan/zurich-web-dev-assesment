@@ -1,5 +1,4 @@
 import React from "react";
-import * as S from "./header-component.styles";
 
 type HeaderComponentProps = React.HTMLProps<HTMLDivElement> & {
   children?: React.ReactNode;
@@ -7,9 +6,13 @@ type HeaderComponentProps = React.HTMLProps<HTMLDivElement> & {
 
 const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentProps>(
   ({ children, ...props }, ref) => (
-    <S.HeaderContainer ref={ref} {...props}>
+    <div
+      ref={ref}
+      className="fixed top-0 left-0 w-full bg-gray-100 text-gray-800 p-4 flex flex-wrap justify-between items-center box-border z-[1000]"
+      {...props}
+    >
       {children}
-    </S.HeaderContainer>
+    </div>
   )
 );
 

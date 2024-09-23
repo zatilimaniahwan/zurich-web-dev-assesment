@@ -2,7 +2,6 @@ import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import HeaderComponent from "../components/header-component/header-component";
 import Link from "next/link";
-import * as S from "./header.styles";
 import SignOut from "../sign-out/sign-out";
 
 /**
@@ -12,22 +11,27 @@ import SignOut from "../sign-out/sign-out";
  */
 const Header = () => {
   const user = useSelector((state: RootState) => state.userData.user?.name);
+
   return (
     <HeaderComponent>
       <div>
         <Link href="/">
-          <S.Logo src="/zurich-logo-blue.svg" alt="Zurich Logo" />
+          <img
+            src="/zurich-logo-blue.svg"
+            alt="Zurich Logo"
+            className="h-auto max-w-[100px] w-full mx-auto"
+          />
         </Link>
       </div>
       <nav>
-        <S.NavList>
-          <S.NavItem>
-            <S.SignedInUserLabel>Welcome, {user}</S.SignedInUserLabel>
-          </S.NavItem>
-          <S.NavItem>
+        <ul className="flex gap-4 list-none p-0 m-0">
+          <li>
+            <p className="mt-2">Welcome, {user}</p>
+          </li>
+          <li>
             <SignOut />
-          </S.NavItem>
-        </S.NavList>
+          </li>
+        </ul>
       </nav>
     </HeaderComponent>
   );

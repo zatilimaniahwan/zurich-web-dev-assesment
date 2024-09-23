@@ -1,6 +1,7 @@
 import { signInUser } from "@/utils/auth";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import * as S from "./sign-in.styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "../components/button/button";
 
 /**
  * A view that renders a button that allows users to sign in with Google.
@@ -13,12 +14,15 @@ import * as S from "./sign-in.styles";
  */
 const SignInUser = () => {
   return (
-    <S.Container>
-      <S.GoogleButton onClick={signInUser}>
-        <S.Icon icon={faGoogle} />
+    <div className="flex justify-center items-center h-screen w-screen">
+      <Button
+        onClick={signInUser}
+        className="flex items-center bg-blue-500 hover:bg-blue-600 focus:outline-none text-white px-4 py-2 rounded-md"
+      >
+        <FontAwesomeIcon icon={faGoogle} className="mr-2" />
         Sign in with Google
-      </S.GoogleButton>
-    </S.Container>
+      </Button>
+    </div>
   );
 };
 

@@ -1,13 +1,16 @@
 import React, { forwardRef, Ref } from "react";
-import * as S from "./footer-component.styles";
 
 const FooterComponent = forwardRef<
   HTMLDivElement,
   React.HTMLProps<HTMLDivElement>
 >((props, ref: Ref<HTMLDivElement>) => (
-  <S.FooterContainer ref={ref} {...props}>
+  <div
+    ref={ref}
+    className="fixed bottom-0 left-0 w-full bg-gray-100 text-gray-800 p-4 flex justify-between items-center box-border z-[1000]"
+    {...props}
+  >
     {props.children}
-  </S.FooterContainer>
+  </div>
 ));
 
 FooterComponent.displayName = "Footer";

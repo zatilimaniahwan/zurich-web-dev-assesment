@@ -1,13 +1,16 @@
 import React from "react";
-import * as S from "./button.styles";
 
 const Button = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ children, ...props }, ref) => (
-  <S.Button ref={ref} {...props}>
+  <button
+    ref={ref}
+    className="text-white border-none rounded-md px-5 py-2 text-base cursor-pointer transition-colors duration-300 ease-in-out shadow-md hover:bg-opacity-90"
+    {...props}
+  >
     {children}
-  </S.Button>
+  </button>
 ));
 
 Button.displayName = "Button";

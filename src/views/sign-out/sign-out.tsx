@@ -1,7 +1,7 @@
 import { AppDispatch } from "@/store";
 import { signOutUser } from "@/utils/auth";
 import { useDispatch } from "react-redux";
-import * as S from "./sign-out.styles";
+import Button from "../components/button/button";
 
 /**
  * Renders a Sign Out button that redirects to the sign-in page and logs out the user
@@ -13,9 +13,12 @@ const SignOut = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <S.SignOutButton onClick={() => signOutUser(dispatch)}>
+    <Button
+      onClick={() => signOutUser(dispatch)}
+      className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 "
+    >
       Sign Out
-    </S.SignOutButton>
+    </Button>
   );
 };
 

@@ -3,8 +3,8 @@ import UserCard from "../components/user-card/user-card";
 type UserProps = {
   users: User[];
   loading: boolean;
-  showEmailId: number | null; // Track which user's email is visible
-  setShowEmailId: React.Dispatch<React.SetStateAction<number | null>>; // Setter for the visible user ID
+  showEmailIds: number[]; // Track which user IDs' emails are visible
+  setShowEmailIds: React.Dispatch<React.SetStateAction<number[]>>; // Setter for the visible user IDs
 };
 
 /**
@@ -13,7 +13,12 @@ type UserProps = {
  * @param {UserProps} props - The component props.
  * @returns {JSX.Element} The JSX element representing the Users component.
  */
-const Users = ({ users, loading, showEmailId, setShowEmailId }: UserProps) => {
+const Users = ({
+  users,
+  loading,
+  showEmailIds,
+  setShowEmailIds,
+}: UserProps) => {
   if (loading && !users) {
     return <p>Loading...</p>;
   }
@@ -25,8 +30,8 @@ const Users = ({ users, loading, showEmailId, setShowEmailId }: UserProps) => {
           <UserCard
             key={user.id}
             user={user}
-            isEmailVisible={showEmailId === user.id}
-            setShowEmailId={setShowEmailId}
+            isEmailVisible={showEmailIds.includes(user.id)}
+            setShowEmailIds={setShowEmailIds}
           />
         ))}
       </div>

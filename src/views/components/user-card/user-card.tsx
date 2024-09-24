@@ -7,11 +7,11 @@ const UserCard = memo(
   ({
     user,
     isEmailVisible,
-    setShowEmailId,
+    setShowEmailIds,
   }: {
     user: User;
     isEmailVisible: boolean;
-    setShowEmailId: React.Dispatch<React.SetStateAction<number | null>>;
+    setShowEmailIds: React.Dispatch<React.SetStateAction<number[]>>;
   }) => {
     return (
       <div
@@ -31,7 +31,14 @@ const UserCard = memo(
           <FontAwesomeIcon
             icon={isEmailVisible ? faEyeSlash : faEye}
             className="ml-2 mt-2 cursor-pointer"
-            onClick={() => setShowEmailId(isEmailVisible ? null : user.id)}
+            onClick={() =>
+              setShowEmailIds(
+                (prev) =>
+                  isEmailVisible
+                    ? prev.filter((id) => id !== user.id) // Remove ID from array if already visible
+                    : [...prev, user.id] // Add ID to array to show email
+              )
+            }
           />
         </p>
       </div>

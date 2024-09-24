@@ -13,21 +13,16 @@ const Index = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [showEmailId, setShowEmailId] = useState<number | null>(null);
+  const [showEmailIds, setShowEmailIds] = useState<number[]>([]); // Changed to array
 
   useEffect(() => {
-    /**
-     * Fetches the list of users from the API with the showEmailId query parameter.
-     * The showEmailId is used to conditionally show the email address for the user
-     * with the matching ID.
-     */
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        // Pass the showEmailId as a query parameter
+        // Pass the showEmailIds as a query parameter
         const { data } = await axios.get<User[]>(
-          `/api/users?showEmailId=${showEmailId}&showEmail=${
-            showEmailId !== null
+          `/api/users?showEmailIds=${JSON.stringify(showEmailIds)}&showEmail=${
+            showEmailIds.length > 0
           }`
         );
         setUsers(data);
@@ -44,7 +39,7 @@ const Index = () => {
     } else if (status === "unauthenticated") {
       dispatch(clearUser());
     }
-  }, [session, status, dispatch, showEmailId]);
+  }, [session, status, dispatch, showEmailIds]);
 
   if (status === "authenticated" && session?.user) {
     return (
@@ -53,8 +48,8 @@ const Index = () => {
         <Users
           users={users}
           loading={loading}
-          showEmailId={showEmailId}
-          setShowEmailId={setShowEmailId}
+          showEmailIds={showEmailIds}
+          setShowEmailIds={setShowEmailIds}
         />
         <Footer />
       </>

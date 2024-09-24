@@ -8,6 +8,24 @@ import Footer from "@/views/footer/footer";
 import Header from "@/views/header/header";
 import axios from "axios";
 
+/**
+ * The Users page displays a list of users with their name and email address.
+ * The email address can be toggled to be shown or hidden.
+ *
+ * The page is protected by NextAuth, and only users who are authenticated
+ * will be able to access the page. The user's profile information is stored
+ * in Redux state.
+ *
+ * The page fetches the list of users from the `/api/users` API route when the
+ * user is authenticated. The API route takes a `showEmailIds` query parameter,
+ * which is an array of user IDs whose email addresses should be shown.
+ *
+ * The page displays a loading indicator while the list of users is being fetched.
+ *
+ * The page also displays a footer component.
+ *
+ * @returns {JSX.Element} The JSX element representing the Users page.
+ */
 const Index = () => {
   const { status, data: session } = useSession();
   const dispatch = useDispatch<AppDispatch>();

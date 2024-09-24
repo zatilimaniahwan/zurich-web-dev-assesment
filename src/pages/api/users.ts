@@ -1,7 +1,12 @@
 import axios from "axios";
 import { maskEmailAddress } from "@/utils/mask-email-address";
 
-// Fetch a page of users from the external API
+/**
+ * Fetches a page of users from the external API.
+ *
+ * @param {number} page - The page number to fetch.
+ * @returns {Promise<UserResponse>} - A promise that resolves with the data for the requested page of users.
+ */
 const fetchUsersByPage = async (page: number): Promise<UserResponse> => {
   const { data } = await axios.get<UserResponse>(
     `https://reqres.in/api/users?page=${page}`
@@ -9,7 +14,18 @@ const fetchUsersByPage = async (page: number): Promise<UserResponse> => {
   return data;
 };
 
-// Fetch all users from the external API recursively
+/**
+ * Fetches all users from the external API and filters them
+ * to include only those whose first name starts with "G" or last name starts with "W".
+ * Optionally masks email addresses if showEmail is not set to true.
+ * Optionally shows email addresses if showEmailIds array includes the user ID.
+ *
+ * @param {number} page - The page number to fetch.
+ * @param {User[]} allUsersData - The array to store the filtered users.
+ * @param {boolean} showEmail - The flag to show the email addresses.
+ * @param {number[]} showEmailIds - The array of user IDs to show the email.
+ * @returns {Promise<User[]>} - The filtered users.
+ */
 export const fetchAllUsers = async (
   page: number,
   allUsersData: User[],
@@ -45,7 +61,20 @@ export const fetchAllUsers = async (
   return allUsersData;
 };
 
-// API route handler
+/**
+ * Handles the GET /api/users API route.
+ *
+ * Fetches all users from the external API and filters them
+ * by first name starting with "G" or last name starting with "W".
+ * Optionally masks email addresses if showEmail is not set to true.
+ * Optionally shows email addresses if showEmailIds array includes the user ID.
+ *
+ * @param {Object} req - The request object.
+ * @param {string} req.query.showEmailIds - The array of user IDs to show the email.
+ * @param {boolean} req.query.showEmail - The flag to show the email addresses.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - The API handler promise.
+ */
 export default async function handler(req: any, res: any) {
   const { showEmailIds, showEmail } = req.query;
   try {

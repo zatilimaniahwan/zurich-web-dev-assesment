@@ -26,7 +26,7 @@ const UserCard = memo(
         <h3 className="mt-2 text-lg">
           {user.first_name} {user.last_name}
         </h3>
-        <p className="mt-1 text-gray-600 w-full flex items-center justify-center">
+        <div className="mt-1 text-gray-600 w-full flex items-center justify-center">
           {user.email}
           <FontAwesomeIcon
             icon={isEmailVisible ? faEyeSlash : faEye}
@@ -40,7 +40,7 @@ const UserCard = memo(
               )
             }
           />
-        </p>
+        </div>
       </div>
     );
   }
